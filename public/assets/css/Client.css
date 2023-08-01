@@ -1,0 +1,201 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none !important;
+    color: var(--color1) !important;
+}
+html{
+    font-size: 16px;
+}
+:root{
+    --color1: #00B14F;
+    --color2: #FFFFFF;
+}
+.Headernavbar{
+   background-color: var(--color2);
+   width: 100%;
+   height: 88px;
+   box-shadow: 0 0 5px 0 #ccc;
+   position: fixed;
+   top: 0;
+   z-index: 1000;
+}
+
+.Headermain{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.Headermain .Headerlogo{
+    width: 8%;
+    line-height: 88px;
+}
+.Headermain .HeaderCartGroup{
+    display: flex;
+    width: 15%;
+    color: #7B6967;
+    justify-content: flex-end;
+}
+
+.Headermain .HeaderCartGroup .HeaderBorder{
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    padding: 3%;
+    margin-right: 7%;
+}
+
+.Headermain .HeaderCartGroup .HeaderCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Headermain .HeaderCartGroup .HeaderLogin .btn{
+    border: none;
+}
+.Headermain .HeaderCartGroup .HeaderLogin .dropdown-menu{
+  width: 100%;
+  margin: 5%  0 !important;
+}
+
+
+/* HomeBanner */
+.HomeBanner {
+    margin-top: 4.2%;
+    width: 100%;
+    height: 500px;
+    background: center / cover no-repeat url('https://food.grab.com/static/page-home/VN-new-2.jpg');
+}
+
+.HomeAdress{
+    background-color: var(--color2);
+    width: 360px;
+    height: 360px;
+    border-radius: 5px;
+    padding: 40px 15px;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 25%;
+    left: 20%;
+}
+.HomeAdress input {
+    border: 1px solid var(--color1);
+    margin-top: 5%;
+}
+.HomeAdress button{
+    background-color: var(--color1);
+    width: 100%;
+    color: var(--color2);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 5%;
+}
+.HomeAdress button:hover{
+    background-color: #1ebd60;
+    color: var(--color2);
+}
+.HomeMain hr{
+    position: relative;
+    top: 50px;
+    border: none;
+    height: 3px;
+    background: #ccc;
+    margin-bottom: 5%;
+}
+
+.HomeMain .HomePromotion .HomePromotionTitle h3{
+    font-size: 2.5rem;
+}
+.HomeMain .HomePromotion .HomePromotionTitle span{
+    color: var(--color1);
+}
+
+.HomeMain .HomePromotion .HomePromotionContent{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+}
+.HomeMain .HomePromotion .HomePromotionContent .HomeBoxContent {
+    width: 23%;
+    position: relative;
+}
+.HomeMain .HomePromotion .HomePromotionContent .HomeBoxContent .imgContent img{
+    width: 100%;
+    border-radius: 10px;
+}
+.HomeMain .HomePromotion .HomePromotionContent .HomeBoxContent .HometagPromotion{
+    width: 30%;
+    background-color: #7B6967;
+    position: absolute;
+    top: 4%;
+    background-color: var(--color1);
+    color: var(--color2);
+    border-radius: 5px;
+}
+.HomeMain .HomePromotion .HomePromotionContent .HomeBoxContent .HometagPromotion b{
+    font-size: 1rem;
+    padding: 2%;
+}
+.HomeMain .HomePromotion .HomePromotionContent .HomeBoxContent .HometagPromotion p {
+    width: 100%;
+}
+
+.HomeMain .HomePromotion .HomePromotionContent .HomeBoxContent .infoContent {
+    margin-top: 5%;
+}
+
+.HomeMain .HomePromotion .HomeButtonSeeMore{
+    margin-top: 2%;
+    
+}
+.HomeMain .HomePromotion .HomeButtonSeeMore button{
+    width: 100%;
+    border: 1px solid #000;
+    font-weight: 700;
+    padding: 1%;
+}
+.HomeMain .HomePromotion .HomeButtonSeeMore button:hover{
+    border: 1px solid var(--color1);
+    color: var(--color1);
+    transition: all 0.5s;
+}
+
+
+/* HomeCategory */
+
+.HomeMain .HomeCategory .HomeCategoryTitle h3{
+    font-size: 2.5rem;
+    padding: 4% 0 4% 0;
+}
+
+.HomeMain .HomeCategory  .HomeCategoryContent{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.HomeMain .HomeCategory  .HomeCategoryContent .HomeBoxContent{
+    width: 23%;
+}
+
+.HomeMain .HomeCategory  .HomeCategoryContent .HomeBoxContent .imgContent img{
+    width: 100%;
+    border-radius: 10px;
+}
+.HomeMain .HomeCategory  .HomeCategoryContent .HomeBoxContent .infoContent {
+    margin: 5% 0 10% 0;
+}
