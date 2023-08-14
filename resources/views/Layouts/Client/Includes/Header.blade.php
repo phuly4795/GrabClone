@@ -9,18 +9,28 @@
             </div>
             <div class="HeaderLogin HeaderBorder">
                 @if(Auth::check())
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <b>Xin chào: {{auth()->user()->name}}</b>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <b>Xin chào: {{auth()->user()->name}}</b>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <x-dropdown-link :href="route('profile.edit')"> {{ __('Hồ sơ cá nhân') }} </x-dropdown-link>
+                            @if(auth()->user()->role_id  == 1)
+                            <x-dropdown-link :href="route('dashboard')">{{ __('Trang quản trị') }} </x-dropdown-link>
+                            @endif
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf          
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Đăng xuất') }}
+                                </x-dropdown-link>
+                        
+                            </form>
+                        </li>
+                        </ul>
                   </div>
-
-                    {{-- <a href="{{route('profile.edit')}}"></a>  --}}
                 @else
                     <a href="{{route('login')}}"><b>Đăng nhập/Đăng ký</b></a>
                 @endif

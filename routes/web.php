@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\ProfileController;
@@ -21,8 +22,11 @@ Route::get('/Cart', [CartController::class, 'index'])->name('cartIndex');
 
 Route::prefix('/admin')->group(function() {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('Layouts.Admin.Pages.dashboard');
     })->name('dashboard');
+
+    Route::get('/user', [UserController::class, 'index'])->name('admin.user');
+
 })->middleware(['auth', 'verified']);
 
 
