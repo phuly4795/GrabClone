@@ -20,6 +20,10 @@
                         {{ __('Người dùng') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('admin.role')" :active="request()->routeIs('admin.role')">
+                        {{ __('Quyền hạn') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Phân quyền') }}
                     </x-nav-link>

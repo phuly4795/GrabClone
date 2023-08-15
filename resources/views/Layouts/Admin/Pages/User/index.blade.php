@@ -12,19 +12,19 @@
                     <table id="myTable" class="display">
                         <thead>
                             <tr>
-                                <th>Column 1</th>
-                                <th>Column 2</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>Quyền hạn</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Row 1 Data 1</td>
-                                <td>Row 1 Data 2</td>
-                            </tr>
-                            <tr>
-                                <td>Row 2 Data 1</td>
-                                <td>Row 2 Data 2</td>
-                            </tr>
+                            @foreach ($data as $key => $item)
+                                <tr>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td>{{$item->role_id}}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

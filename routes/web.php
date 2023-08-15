@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\ClientController;
@@ -26,6 +27,13 @@ Route::prefix('/admin')->group(function() {
     })->name('dashboard');
 
     Route::get('/user', [UserController::class, 'index'])->name('admin.user');
+
+    Route::prefix('role')->group(function (){
+        Route::get('/', [RoleController::class, 'index'])->name('admin.role');
+        Route::post('/', [RoleController::class, 'store'])->name('admin.role');
+    });
+
+  
 
 })->middleware(['auth', 'verified']);
 
