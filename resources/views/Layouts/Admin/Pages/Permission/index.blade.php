@@ -1,10 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Quyền hạn') }}
+            {{ __('Phân quyền') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if ($errors->any())
@@ -26,7 +25,7 @@
             <div >
                 <!-- Button trigger modal -->
                 <button type="button" style="background: blue; color:white" class="btn outline-dark my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Thêm quyền hạn
+                   Thêm quyền
                 </button>
                 {{-- <x-modal :name=model :show=true ></x-modal> --}}
                 <!-- Modal add -->
@@ -34,18 +33,18 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm quyền hạn</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm quyền</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="{{route('admin.role')}}" method="POST">
+                            <form action="{{route('admin.permission')}}" method="POST">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group my-3">
-                                        <label for="code">Mã quyền hạn</label>
+                                        <label for="code">Mã quyền</label>
                                         <input type="text" class="form-control" id="code" name="code" placeholder="Nhập mã quyền hạn" value="{{ old('code') }}">
                                     </div>
                                     <div class="form-group my-2">
-                                        <label for="name">Tên quyền hạn</label>
+                                        <label for="name">Tên quyền</label>
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên quyền hạn" value="{{ old('title') }}">
                                     </div>
                                 </div>
@@ -88,6 +87,7 @@
             </div>
         </div>
     </div>
+
 
 
     <script>

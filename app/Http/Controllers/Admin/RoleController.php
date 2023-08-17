@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleAdd;
+use App\Http\Requests\Admin\RoleUpdate;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -37,7 +38,6 @@ class RoleController extends Controller
      */
     public function store(RoleAdd $request)
     {
-       
         try {
             $code = $request->code;
             $name = $request->name;
@@ -57,7 +57,13 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $roleDetail = Role::findOrFail($id);
+            return view('Layouts.Admin.Pages.Role.update',compact('roleDetail'));
+         } catch (\Throwable $th) {
+            Log::error("role");
+            Log::error($th);
+         }
     }
 
     /**
@@ -71,9 +77,20 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RoleUpdate $request, string $id)
     {
-        //
+        try {
+            $code = $request->code;
+            $name = $request->name;
+            Role::findOrFail($id)->update([
+                'code' => $code,
+                'name' => $name,
+            ]);
+            return redirect()->route('admin.role')->with(['message' => 'Cập nhật thành công']);
+         } catch (\Throwable $th) {
+            Log::error("role");
+            Log::error($th);
+         }
     }
 
     /**

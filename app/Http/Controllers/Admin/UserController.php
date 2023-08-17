@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -44,7 +45,14 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $userDetail = User::findOrFail($id);
+            $listRole= Role::orderBy('id','DESC')->get();
+            return view('Layouts.Admin.Pages.User.update',compact('userDetail','listRole'));
+         } catch (\Throwable $th) {
+            Log::error("role");
+            Log::error($th);
+         }
     }
 
     /**
@@ -60,7 +68,20 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $code = $request->code;
+            $name = $request->name;
+            $role = $request->role;
+            User::findOrFail($id)->update([
+                'code' => $code,
+                'name' => $name,
+                'role_id' => $role,
+            ]);
+            return redirect()->route('admin.user')->with(['message' => 'Cập nhật thành công']);
+         } catch (\Throwable $th) {
+            Log::error("role");
+            Log::error($th);
+         }
     }
 
     /**

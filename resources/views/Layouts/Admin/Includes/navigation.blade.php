@@ -24,7 +24,7 @@
                         {{ __('Quyền hạn') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('admin.permission')" :active="request()->routeIs('admin.permission')">
                         {{ __('Phân quyền') }}
                     </x-nav-link>
                   
