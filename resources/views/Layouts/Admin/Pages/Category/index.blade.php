@@ -1,9 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Phân quyền') }}
+            {{ __('Danh mục') }}
         </h2>
     </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if ($errors->any())
@@ -25,7 +26,7 @@
             <div >
                 <!-- Button trigger modal -->
                 <button type="button" style="background: blue; color:white" class="btn outline-dark my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                   Thêm quyền
+                    Thêm danh mục
                 </button>
                 {{-- <x-modal :name=model :show=true ></x-modal> --}}
                 <!-- Modal add -->
@@ -33,23 +34,27 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm quyền</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm danh mục</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="{{route('admin.permission')}}" method="POST">
+                            <form action="{{route('admin.category')}}" method="POST">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group my-3">
-                                        <label for="code">Mã quyền</label>
-                                        <input type="text" class="form-control" id="code" name="code" placeholder="Nhập mã quyền hạn" value="{{ old('code') }}">
+                                        <label for="code">Mã danh mục</label>
+                                        <input type="text" class="form-control" id="code" name="code" placeholder="Nhập mã danh mục" value="{{ old('code') }}">
                                     </div>
                                     <div class="form-group my-2">
-                                        <label for="name">Tên quyền</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên quyền hạn" value="{{ old('title') }}">
+                                        <label for="name">Tên danh mục</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên danh mục" value="{{ old('name') }}">
+                                    </div>
+                                    <div class="form-group my-2">
+                                        <label for="name">Biểu tượng</label>
+                                        <input type="text" class="form-control" id="icon" name="icon" placeholder="Nhập biểu tượng" value="{{ old('icon') }}">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <a type="button" class="btn btn-secondary text-gray-900" data-bs-dismiss="modal">đóng</a>
+                                    <a type="button" class="btn btn-secondary text-gray-900" data-bs-dismiss="modal">Đóng</a>
                                     <button type="submit" class="btn btn-primary text-gray-900">Thêm</button>
                                 </div>
                             </form>
@@ -64,8 +69,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Mã quyền</th>
-                                <th>Tên quyền</th>
+                                <th>Mã danh mục</th>
+                                <th>Tên danh mục</th>
+                                <th>Biểu tượng</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -75,8 +81,9 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{$item->code}}</td>
                                     <td>{{$item->name}}</td>
+                                    <td>{!! $item->icon !!}</td>
                                     <td>
-                                        <a href="{{route('admin.permission.show',[$item->id] )}}"><i class="fa-solid fa-pen-to-square"></i> </a>
+                                        <a href="{{route('admin.category.show',[$item->id] )}}"><i class="fa-solid fa-pen-to-square"></i> </a>
                                         |<i class="fa-solid fa-trash"></i>
                                     </td>
                                 </tr>
@@ -87,7 +94,6 @@
             </div>
         </div>
     </div>
-
 
 
     <script>

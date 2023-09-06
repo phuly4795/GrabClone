@@ -16,6 +16,10 @@
                         {{ __('Trang chủ') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('admin.category')" :active="request()->routeIs('admin.category')">
+                        {{ __('Danh mục') }}
+                    </x-nav-link>
+                    
                     <x-nav-link :href="route('admin.user')" :active="request()->routeIs('admin.user')">
                         {{ __('Người dùng') }}
                     </x-nav-link>
