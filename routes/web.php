@@ -36,6 +36,7 @@ Route::prefix('/admin')->group(function() {
         Route::post('/', [CategoryController::class, 'store'])->name('admin.category');
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
         Route::put('/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+        Route::delete('delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
     });
 
 

@@ -82,9 +82,14 @@
                                     <td>{{$item->code}}</td>
                                     <td>{{$item->name}}</td>
                                     <td>{!! $item->icon !!}</td>
-                                    <td>
+                                    <td style="display: flex">
                                         <a href="{{route('admin.category.show',[$item->id] )}}"><i class="fa-solid fa-pen-to-square"></i> </a>
-                                        |<i class="fa-solid fa-trash"></i>
+                                        | 
+                                        <form method="POST" action="{{route('admin.category.destroy', [$item->id] )}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                                        </form>                          
                                     </td>
                                 </tr>
                             @endforeach

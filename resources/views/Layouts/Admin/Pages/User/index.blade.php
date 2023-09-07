@@ -32,7 +32,7 @@
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->email}}</td>
-                                    <td>{{$item->role->name}}</td>
+                                    <td>{{$item->role->name ?? ""}}</td>
                                     <td>
                                         <a href="{{route('admin.user.show',[$item->id] )}}"><i class="fa-solid fa-pen-to-square"></i> </a>
                                         |<i class="fa-solid fa-trash"></i>

@@ -63,25 +63,35 @@ class PermissionController extends Controller
     {
         try {
             $listUser = $request->user;
-            // dd($listUser);
-            $listUserPermission = UserPermission::where('permission_id', $id)->pluck('user_id');
-            $listUserPermission->toArray();
-         //  dd($listUserPermission, $listUser);
-            $check = in_array($listUserPermission, $listUser);
-            dd($check);
-            foreach ($listUser as $key => $value) {
-               if($listUserPermission){
-                  $listUserPermission->update([
-                     'user_id' => $value
-                  ]);
-               }else{
+            $listIdPermissionArr = [];
+            $listUserPermission = UserPermission::where('permission_id', $id)->get();
+            if($listUserPermission == "[]"){
+               foreach ($listUser as $key => $value) {
                   UserPermission::create([
                      'user_id' => $value,
                      'permission_id' => $id,
                   ]);
-               } 
+               }
             }
-          
+            foreach ($listUserPermission as $key => $value) {
+               $listIdPermissionArr[] = $value->user_id;
+            }
+
+            $differentValues = collect($listUser)->diff($listIdPermissionArr)->all();
+
+            dd($listUser, $listIdPermissionArr, $differentValues);
+            // $commonValues = collect($arrayA)->intersect($arrayB)->all();
+                  // dd($commonValues);
+
+
+            // else{
+            //    foreach ($listUserPermission as $key => $value) {
+            //       $listIdPermissionArr[] = $value->id;
+            //    }
+            //    // dd($listIdPermissionArr);
+            // }
+         
+      
             return redirect()->route('admin.permission')->with(['message' => 'Cập nhật thành công']);
          } catch (\Throwable $th) {
             dd($th);
