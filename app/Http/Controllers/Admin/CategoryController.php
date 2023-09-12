@@ -86,35 +86,58 @@ class CategoryController extends Controller
             preg_grep('/^childMenu_\d+$/', array_keys(request()->all()))
         );
 
+        $childMenuInputUpdates = request()->only(
+            preg_grep('/^childMenuUpdate_\d+$/', array_keys(request()->all()))
+        );
+        $childMenuInputUpdateIds = request()->only(
+            preg_grep('/^childMenuUpdateId_\d+$/', array_keys(request()->all()))
+        );
+
         $cate =  Category::findOrFail($id)->first();
         $cate->update([
             'code' => $request->code,
             'name' => $request->name,
         ]);
-        
-        $cateDetail = CategoryDetail::where('category_id', $id)->get();
-        if($cateDetail == "[]"){
+
+        if($childMenuInputs){
             foreach ($childMenuInputs as $key => $value) {
-                CategoryDetail::create([          
-                    'code' => $this->removeAccents($value),
-                    'name' => $value,
-                    'category_id' => $id
-                ]);
-            }         
-        }
-        dd($cateDetail);
-        if($cateDetail){
-            foreach ($childMenuInputs as $key => $value) {
-                $checkCateDetail =  CategoryDetail::where('code', $value->code)->first();
+                $code =  $this->removeAccents($value);
+                $checkCateDetail =  CategoryDetail::where('code', $code)->first();
                 if(!$checkCateDetail){
                     CategoryDetail::create([          
-                        'code' =>$value->code,
+                        'code' =>$code,
                         'name' => $value,
                         'category_id' => $id
                     ]);
                 }
             }
         }
+
+        if ($childMenuInputUpdates && count($childMenuInputUpdates) === count($childMenuInputUpdateIds)) {
+            // Sử dụng hàm count để kiểm tra số lượng phần tử, đảm bảo chúng bằng nhau
+            foreach ($childMenuInputUpdateIds as $idKey => $uInputUpdateId) {
+                dd($childMenuInputUpdateIds,$idKey);
+                $InputUpdate = $childMenuInputUpdates[$idKey];
+                $code = $this->removeAccents($InputUpdate);
+                $checkCateDetail = CategoryDetail::find($uInputUpdateId);
+                $checkCateDetail->update([
+                    'name' => $InputUpdate,
+                ]);
+            }
+        }
+
+        // $cateDetail = CategoryDetail::where('category_id', $id)->get();
+        // if($cateDetail == "[]"){
+        //     foreach ($childMenuInputs as $key => $value) {
+        //         CategoryDetail::create([          
+        //             'code' => $this->removeAccents($value),
+        //             'name' => $value,
+        //             'category_id' => $id
+        //         ]);
+        //     }         
+        // }
+
+        
         return redirect()->back()->with(['message' => 'ok']);
         // return redirect()->route('admin.category')->with(['message' => 'Cập nhật thành công']);
 

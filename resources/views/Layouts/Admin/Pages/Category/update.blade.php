@@ -57,8 +57,9 @@
                             <div class="form-group my-2">
                                 <label for="name">Danh mục con</label>
                                 @if(isset($CategoryDetail))
-                                    @foreach ($CategoryDetail as $item)
-                                        <input type='text' class='input-field form-control my-3' value="{{$item->name}}">
+                                    @foreach ($CategoryDetail as $key => $item)
+                                        <input type='text' class='input-field form-control my-3' name="childMenuUpdate_{{$key+1}}" value="{{$item->name}}">
+                                        <input hidden type='text' class='input-field form-control my-3' name="childMenuUpdateId_{{$key+1}}" value="{{$item->id}}">
                                     @endforeach
                                 @endif
                                 <span id="Addchild" class="btn btn-warning">Thêm menu con</span>
