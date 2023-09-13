@@ -82,6 +82,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $childMenuInputs = request()->only(
             preg_grep('/^childMenu_\d+$/', array_keys(request()->all()))
         );
@@ -98,7 +99,7 @@ class CategoryController extends Controller
             'code' => $request->code,
             'name' => $request->name,
         ]);
-
+        
         if($childMenuInputs){
             foreach ($childMenuInputs as $key => $value) {
                 $code =  $this->removeAccents($value);
@@ -113,33 +114,26 @@ class CategoryController extends Controller
             }
         }
 
-        if ($childMenuInputUpdates && count($childMenuInputUpdates) === count($childMenuInputUpdateIds)) {
-            // Sử dụng hàm count để kiểm tra số lượng phần tử, đảm bảo chúng bằng nhau
-            foreach ($childMenuInputUpdateIds as $idKey => $uInputUpdateId) {
-                dd($childMenuInputUpdateIds,$idKey);
-                $InputUpdate = $childMenuInputUpdates[$idKey];
-                $code = $this->removeAccents($InputUpdate);
-                $checkCateDetail = CategoryDetail::find($uInputUpdateId);
-                $checkCateDetail->update([
-                    'name' => $InputUpdate,
-                ]);
+        if ($childMenuInputUpdateIds && $childMenuInputUpdates) {
+            $updatedChildMenuInputUpdates = [];
+            foreach ($childMenuInputUpdates as $key => $value) {
+                $newKey = str_replace("childMenuUpdate_", "childMenuUpdateId_", $key);
+                $updatedChildMenuInputUpdates[$newKey] = $value;
+            }
+            foreach ($childMenuInputUpdateIds as $idKey => $InputIDUpdate) {
+                if (array_key_exists($idKey, $updatedChildMenuInputUpdates)) {
+                    $InputUpdate = $updatedChildMenuInputUpdates[$idKey];
+                    $checkCateDetail = CategoryDetail::find($InputIDUpdate);
+                    if ($checkCateDetail) {
+                        $checkCateDetail->update([
+                            'name' => $InputUpdate,
+                        ]);
+                    }
+                }
             }
         }
-
-        // $cateDetail = CategoryDetail::where('category_id', $id)->get();
-        // if($cateDetail == "[]"){
-        //     foreach ($childMenuInputs as $key => $value) {
-        //         CategoryDetail::create([          
-        //             'code' => $this->removeAccents($value),
-        //             'name' => $value,
-        //             'category_id' => $id
-        //         ]);
-        //     }         
-        // }
-
-        
-        return redirect()->back()->with(['message' => 'ok']);
-        // return redirect()->route('admin.category')->with(['message' => 'Cập nhật thành công']);
+    
+        return redirect()->route('admin.category')->with(['message' => 'Cập nhật thành công']);
 
     }
 
@@ -149,6 +143,13 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         $del = Category::find($id)->delete();
+
+        return redirect()->back()->with(['message' => 'Xóa thành công']);
+    }
+
+    public function destroyChildMenu(string $id)
+    {
+        CategoryDetail::find($id)->delete();
 
         return redirect()->back()->with(['message' => 'Xóa thành công']);
     }

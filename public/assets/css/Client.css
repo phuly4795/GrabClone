@@ -5,64 +5,18 @@
 }
 a{
     text-decoration: none !important;
-    color: var(--color1) !important;
+    color: var(--color2) !important;
 }
 html{
     font-size: 16px;
 }
 :root{
-    --color1: #00B14F;
+    --color1: #14425D;
     --color2: #FFFFFF;
 }
 
 .Headernavbar{
-   background-color: var(--color2);
-   width: 100%;
-   height: 88px;
-   box-shadow: 0 0 5px 0 #ccc;
-   position: fixed;
-   top: 0;
-   z-index: 1000;
-}
-
-.Headermain{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    align-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.Headermain .Headerlogo{
-    width: 8%;
-    line-height: 88px;
-}
-.Headermain .HeaderCartGroup{
-    display: flex;
-    width: 15%;
-    color: #7B6967;
-    justify-content: flex-end;
-}
-
-.Headermain .HeaderCartGroup .HeaderBorder{
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    padding: 3%;
-    margin-right: 7%;
-}
-
-.Headermain .HeaderCartGroup .HeaderCart{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.Headermain .HeaderCartGroup .HeaderLogin .btn{
-    border: none;
-}
-.Headermain .HeaderCartGroup .HeaderLogin .dropdown-menu{
-  width: 100%;
-  margin: 5%  0 !important;
+   background-color: var(--color1) !important;
 }
 
 

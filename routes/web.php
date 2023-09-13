@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ClientController::class, 'index']);
+Route::get('/', [ClientController::class, 'index'])->name('homeClient');
 Route::get('/Cart', [CartController::class, 'index'])->name('cartIndex');
 
 Route::prefix('/admin')->group(function() {
@@ -37,6 +37,7 @@ Route::prefix('/admin')->group(function() {
         Route::get('/{id}', [CategoryController::class, 'show'])->name('admin.category.show');
         Route::put('/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
         Route::delete('delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::delete('deleteChildMenu/{id}', [CategoryController::class, 'destroyChildMenu'])->name('admin.category.destroyChildMenu');
     });
 
 

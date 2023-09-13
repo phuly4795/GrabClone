@@ -58,8 +58,19 @@
                                 <label for="name">Danh mục con</label>
                                 @if(isset($CategoryDetail))
                                     @foreach ($CategoryDetail as $key => $item)
-                                        <input type='text' class='input-field form-control my-3' name="childMenuUpdate_{{$key+1}}" value="{{$item->name}}">
-                                        <input hidden type='text' class='input-field form-control my-3' name="childMenuUpdateId_{{$key+1}}" value="{{$item->id}}">
+                                        <span style="display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: nowrap;
+                                        align-items: center;">
+                                            <input type='text' class='input-field form-control my-3' name="childMenuUpdate_{{$key+1}}" value="{{$item->name}}">
+                                            <form method="POST" action="{{route('admin.category.destroyChildMenu', [$item->id] )}}" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" ><i class="fa-solid fa-trash" style="font-size: 32px; "></i></button>
+                                            </form>
+                                            <input hidden type='text' class='input-field form-control my-3' name="childMenuUpdateId_{{$key+1}}" value="{{$item->id}}">
+                                        </span>
+                                       
                                     @endforeach
                                 @endif
                                 <span id="Addchild" class="btn btn-warning">Thêm menu con</span>
@@ -87,6 +98,9 @@
             inputCount++;
             $(this).before(newInput);
         })
+
+
+
     </script>
 
 </x-app-layout>
