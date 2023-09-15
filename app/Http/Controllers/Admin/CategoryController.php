@@ -96,7 +96,6 @@ class CategoryController extends Controller
 
         $cate =  Category::findOrFail($id)->first();
         $cate->update([
-            'code' => $request->code,
             'name' => $request->name,
         ]);
         

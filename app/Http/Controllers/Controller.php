@@ -18,5 +18,4 @@ class Controller extends BaseController
         $str = preg_replace('/[^A-Z0-9]+/', '', $str); // Loại bỏ các ký tự không phải chữ cái hoặc số
         return $str;
     }
-    
 }

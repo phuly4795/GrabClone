@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
 }
 a{
     text-decoration: none !important;
@@ -15,11 +16,30 @@ html{
     --color2: #FFFFFF;
 }
 
+.container {
+    width: 1170px !important;
+}
 .Headernavbar{
    background-color: var(--color1) !important;
 }
-
-
+.header-logo{
+    display: block;
+    width: 196px;
+    height: 36px;
+    background: url(//static.8cache.com/img/spriteimg_new_white_op.png) no-repeat 0 0;
+    text-indent: -9999px;
+    white-space: nowrap;
+    outline: none;
+    margin: 5px 5px 0 0;
+}
+.text-header-info{
+    background-color: #ECECEC;
+    box-shadow: 0 0 0 1px #ccc;
+    color: #000;
+}
+.text-header-info p {
+    padding: 5px ;
+}
 /* HomeBanner */
 
 .Hometitle h3{
